@@ -1,10 +1,18 @@
-from setuptools import find_packages, setup
+from setuptools import find_packages
+from setuptools import setup
 
-setup(
-    name='src',
-    packages=find_packages(),
-    version='0.1.0',
-    description='A short description of the project.',
-    author='Your name (or your organization/company/team)',
-    license='MIT',
-)
+with open("requirements.txt") as f:
+    content = f.readlines()
+requirements = [x.strip() for x in content if "git+" not in x]
+
+setup(name='tps-jul-2022',
+      version="0.0.1",
+      description="Kaggle TPS July Playground 2022",
+      license="MIT",
+      author="Kai majerus",
+      install_requires=requirements,
+      packages=find_packages(),
+      test_suite="tests",
+      # include_package_data: to install data from MANIFEST.in
+      include_package_data=True,
+      zip_safe=False)
